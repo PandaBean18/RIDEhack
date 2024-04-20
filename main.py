@@ -65,7 +65,7 @@ def get_follow_up(chat, answers):
         prompt += "{}".format(i+1)
         prompt += answers[i]
         prompt += "\n"
-    prompt += "Based on these ask follow up questions if you have any. Please try to keep the number of questions to a minimum, do not add any markdown, no numbering, no pretext, just the questions")
+    prompt += "Based on these ask follow up questions if you have any. Please try to keep the number of questions to a minimum, do not add any markdown, no numbering, no pretext, just the questions"
     questions = get_chat_response(chat, prompt).split("\n")
     return questions
     
