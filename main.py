@@ -1,6 +1,5 @@
 import vertexai
 from vertexai.generative_models import GenerativeModel, ChatSession
-import multiprocessing
 from gtts import gTTS
 import pyttsx3
 import datetime
@@ -10,35 +9,6 @@ engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
 engine.setProperty('rate', 130)
-
-
-class Process(multiprocessing.Process):
-    def __init__(self, chat, answer, index):
-        super(Process, self).__init__() 
-        self.chat = chat
-        self.answer = answer
-        self.index = index+1
-
-    def get_chat_response(self, chat: ChatSession, prompt: str) -> str:
-        text_response = []
-        responses = chat.send_message(prompt, stream=True)
-        for chunk in responses:
-            text_response.append(chunk.text)
-        
-        return "".join(text_response)
-
-    def get_follow_up(self):
-        prompt = "Answer for {} is: ".format(self.index) + answer + "If you have a follow up question, ask it, else strictly return only 0, nothing else"
-        follow = get_chat_response(self.chat, self.prompt)
-        if (follow != "0"):
-            return follow 
-        else:
-            return 0
-        
-    def run(self):
-        get_follow_up()
-
-# TODO(developer): Update and un-comment below lines
 project_id = "integral-hold-420817"
 location = "us-central1"
 vertexai.init(project=project_id, location=location)
@@ -47,6 +17,7 @@ chat = model.start_chat()
 model_follow_up = model.start_chat()
 chat_follow_up = model.start_chat()
 points = 0
+questions = []
 
 def speak(audio):
     engine.say(audio)
@@ -80,8 +51,6 @@ def get_chat_response(chat: ChatSession, prompt: str) -> str:
 prompt = "You are an interviewer now. i will give you some information. when asked, give me 5 questions based on job role and my past experience."
 print(get_chat_response(chat, prompt))
 
-questions = []
-
 def initialize(chat: ChatSession):
     job_role = "The job role is " + "Backend flask developer" #input("Please enter the job role: ")
     past_exp = "My past experience is " + "I created an application called compass which helped users find their route using public transport based on a number of metrics such as cost, eco friendliness and time taken, it was built in flask" #input("What is your past experience?\n")
@@ -90,6 +59,16 @@ def initialize(chat: ChatSession):
     global questions 
     questions = get_chat_response(chat, "Give me the 5 questions, do not add any markdown, no numbering, no pretext, just the questions").split("\n")
 
+def get_follow_up(chat, answers):
+    prompt = "The answers for the questions are:\n"
+    for i in range(len(answer)):
+        prompt += "{}".format(i+1)
+        prompt += answers[i]
+        prompt += "\n"
+    prompt += "Based on these ask follow up questions if you have any. Please try to keep the number of questions to a minimum, do not add any markdown, no numbering, no pretext, just the questions")
+    questions = get_chat_response(chat, prompt).split("\n")
+    return questions
+    
 def parse_questions(questions):
     i = 0
     for question in questions:
@@ -116,16 +95,26 @@ def process_answer(chat, answer, index):
 initialize(chat)
 questions = parse_questions(questions)
 score = 0
+answers = []
 for i in range(len(questions)):
     if (questions[i] == ''):
         continue
-
     print(questions[i])
     speak(questions[i])
     answer = input("> ")
+    answers.append(answer)
     grade = process_answer(chat, answer, i)
     score += int(grade)
     print("grade: {}".format(grade))
+
+follow_up_questions = get_follow_up(chat, answers)
+for i in range(len(follow_up_questions)):
+    if (follow_up_questions[i] == ''):
+        continue
+    print(follow_up_questions[i])
+    speak(follow_up_questions[i])
+    answer = input("> ")
+
 
 review = get_chat_response(chat, "On the basis of our interactions, Please let me know what i should improve upon.")
 
