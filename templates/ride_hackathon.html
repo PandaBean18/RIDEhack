@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+  <meta charset="UTF-8">
+  <title>Your Page Title</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">  </head>
+<body>
+   <header>
+    <div class="logo"><p>PRACTERVIEW</p></div>
+     <nav>
+    <ul>
+       <li><a href="">Home</a></li>
+       <li><a href="">About</a></li>
+       <li><a href="">Interview</a></li>
+       <li><a href="">question bank</a></li>        
+   </ul>
+  </nav>
+  <div class="buttons">
+    <button><a href="">Login</a></button>
+    <button><a href="">Sign in </a></button>
+  </div>
+</header>
+<div class="container">
+  <div class="slide1">
+   
+  </div>
+  <div class="button2">
+    <button><a href="http://127.0.0.1:5000/form">>Start interview</a></button></div>
+  <div class="slide2">
+    <section class="parallax">
+      <p class="type" data-text="We are a team of passionate individuals...">Your One stop solution to prepare for interviews , using AI .</p>
+      <img src="/static/train.png" alt = "train" id="train">
+    </section>
+  </div>
+  <div class="slide3">
+    <section class="about-us">
+      <h2>About Us</h2>
+      <p class="typewriter" data-text="We are a team of passionate individuals...">Your One stop solution to prepare for interviews , using AI .</p>
+    </section>
+    </section>
+  </div>
+  
+</div>
+
+
+  <script >
+    let train = document.getElementById("train");
+
+window.addEventListener("scroll",()=>{
+    let value = window.scrollY;
+    train.style.right = value*2+"px";
+})
+
+
+
+const element = document.querySelector('.scroll-animation');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      element.classList.add('in-viewport');
+    } else {
+      element.classList.remove('in-viewport');
+    }
+  });
+});
+
+observer.observe(element);
+  </script>  </body>
+</html>
+

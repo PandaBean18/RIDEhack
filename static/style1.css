@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head><style>* 
+/* 
   This is a comment. You can use comments to explain your CSS code.
 */
 
@@ -91,7 +89,7 @@ button:hover{
   width: 100%;
   display: flex;
   justify-content: center;
-  background-image: url(Pictures/Screenshot\ 2024-04-20\ at\ 2.56.12\ PM.png);
+  background-image: url(/static/home1_slide_1.png);
   background-repeat: no-repeat;
   background-size: cover;
   
@@ -101,7 +99,7 @@ button:hover{
   width: 100%;
   display: flex;
   justify-content: center;
-  background-image: url(Pictures/Screenshot\ 2024-04-20\ at\ 8.51.17\ PM.png);
+  background-image: url(/static/home_slide_2.png);
   scroll-snap-align: start;
   
   
@@ -111,7 +109,7 @@ button:hover{
   width: 100%;
   display: flex;
   justify-content: center;
-  background-image: url(Pictures/Screenshot\ 2024-04-20\ at\ 8.55.17\ PM.png);
+  background-image: url(/static/home_slide_3.png);
   scroll-snap-align: start;
 }
 .slide4{
@@ -189,12 +187,35 @@ section{
 
 .about-us {
   text-align: center;
-  padding: 50px;
-  font-family: monospace; /* Monospace font for typewriter aesthetic */
+  padding: 30px;
+  margin-bottom: 20px;
+  font-family: monospace;
+  color: white;
+  font-size: 2rem; /* Monospace font for typewriter aesthetic */
 }
 
 .typewriter {
   overflow: hidden;
+  border-right: 3px solid black; /* Simulates cursor */
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 3px; /* Adjust letter spacing for typewriter effect */
+  animation: typing 3.5s steps(40, end), blink-cursor 0.5s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-cursor {
+  from, to { border-color: black }
+  50% { border-color: transparent }
+}
+.type{
+  overflow: hidden;
+  font-size: 2rem;
+  padding-bottom: 500px;
   border-right: 3px solid black; /* Simulates cursor */
   white-space: nowrap;
   margin: 0 auto;
@@ -225,70 +246,37 @@ section{
 .scroll-animation:in-viewport {
   opacity: 1;
   transform: translateX(0); /* Animate text back to original position */
-}</style>
- 
-  <meta charset="UTF-8">
-  <title>Your Page Title</title>
-  <link rel="stylesheet" href="style1.css">  </head>
-<body>
-   <header>
-    <div class="logo"><p>PRACTERVIEW</p></div>
-     <nav>
-    <ul>
-       <li><a href="">Home</a></li>
-       <li><a href="">About</a></li>
-       <li><a href="">Interview</a></li>
-       <li><a href="">question bank</a></li>        
-   </ul>
-  </nav>
-  <div class="buttons">
-    <button><a href="">Login</a></button>
-    <button><a href="">Sign in </a></button>
-  </div>
-</header>
-<div class="container">
-  <div class="slide1">
+}
+
+.button2{
+  align-items: center;
+  margin-left: 600px;
+
+}
+
+.button2 button{
+    width: 40vh;
+    height: 10vh;
+    background: #f156f1;
+    border:  2px solid #1c0c17;
+    border-radius: 50px;
     
-  </div>
-  <div class="slide2">
-    <section class="parallax">
-      <h1 id="text">The fastest way to get your dream job .</h1>
-      <img src="Downloads/train.png" alt = "train" id="train">
-    </section>
-  </div>
-  <div class="slide3">
-    <section class="about-us">
-      <h2>About Us</h2>
-      <p class="typewriter" data-text="We are a team of passionate individuals...">...</p>
-    </section>
-    </section>
-  </div>
-  <div class="slide4"></div>
-</div>
+    
+    
+    font-weight: 500;
+    color: rgb(8, 9, 9);
+    text-decoration: none;
+    cursor: pointer;
+  
+}
 
+.button2 button:hover{
+  background-color: #0e0114;
+  border:  2px solid #fa0db7;
+  transition:  all 0.4s ease 0s;
+  
+}
 
-  <script >
-    let train = document.getElementById("train");
-
-window.addEventListener("scroll",()=>{
-    let value = window.scrollY;
-    train.style.right = value*2+"px";
-})
-
-
-
-const element = document.querySelector('.scroll-animation');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      element.classList.add('in-viewport');
-    } else {
-      element.classList.remove('in-viewport');
-    }
-  });
-});
-
-observer.observe(element);
-  </script>  </body>
-</html>
-
+.button2 a:hover{
+  color: white;
+}

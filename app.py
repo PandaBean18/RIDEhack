@@ -5,6 +5,10 @@ from gtts import gTTS
 import pyttsx3
 import datetime
 import speech_recognition as sr
+from flask import render_template
+from flask import redirect
+from flask import request
+from flask import url_for
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -49,9 +53,6 @@ def get_chat_response(chat: ChatSession, prompt: str) -> str:
         text_response.append(chunk.text)
     return "".join(text_response)
 
-prompt = "You are an interviewer now. i will give you some information. when asked, give me 5 questions based on job role and my past experience."
-print(get_chat_response(chat, prompt))
-
 def initialize(chat: ChatSession):
     job_role = "The job role is " + "Backend flask developer" #input("Please enter the job role: ")
     past_exp = "My past experience is " + "I created an application called compass which helped users find their route using public transport based on a number of metrics such as cost, eco friendliness and time taken, it was built in flask" #input("What is your past experience?\n")
@@ -94,37 +95,54 @@ def process_answer(chat, answer, index):
 
 
 initialize(chat)
+
+# score = 0
+# answers = []
+# for i in range(len(questions)):
+#     if (questions[i] == ''):
+#         continue
+#     print(questions[i])
+#     speak(questions[i])
+#     answer = input("> ")
+#     answers.append(answer)
+#     grade = process_answer(chat, answer, i)
+#     score += int(grade)
+#     print("grade: {}".format(grade))
+
+# follow_up_questions = get_follow_up(chat, answers)
+# for i in range(len(follow_up_questions)):
+#     if (follow_up_questions[i] == ''):
+#         continue
+#     print(follow_up_questions[i])
+#     speak(follow_up_questions[i])
+#     answer = input("> ")
+
+
+# review = get_chat_response(chat, "On the basis of our interactions, Please let me know what i should improve upon.")
+
+# print(review)
+# speak(review)
+# print("Final score: {}/50".format(score))
+
+prompt = "You are an interviewer now. i will give you some information. when asked, give me 10 questions based on job role and my past experience."
+get_chat_response(chat, prompt)
 questions = parse_questions(questions)
-score = 0
-answers = []
-for i in range(len(questions)):
-    if (questions[i] == ''):
-        continue
-    print(questions[i])
-    speak(questions[i])
-    answer = input("> ")
-    answers.append(answer)
-    grade = process_answer(chat, answer, i)
-    score += int(grade)
-    print("grade: {}".format(grade))
-
-follow_up_questions = get_follow_up(chat, answers)
-for i in range(len(follow_up_questions)):
-    if (follow_up_questions[i] == ''):
-        continue
-    print(follow_up_questions[i])
-    speak(follow_up_questions[i])
-    answer = input("> ")
-
-
-review = get_chat_response(chat, "On the basis of our interactions, Please let me know what i should improve upon.")
-
-print(review)
-speak(review)
-print("Final score: {}/50".format(score))
 
 app = Flask(__name__)
+i = 0
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return render_template('ride_hackathon.html')
+
+@app.route("/form")
+def interview_form():
+    return render_template('index2.html')
+
+@app.route("/interview")
+def index_3():
+    global i
+    global questions
+    question = questions[i]
+    i+=1
+    return render_template('index3.html', question=question)

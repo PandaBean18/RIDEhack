@@ -4,7 +4,6 @@
  
   <meta charset="UTF-8">
   <title>Your Page Title</title>
-  <link rel="stylesheet" href="style2.css">
   <style>
    *{
     margin: 0;
@@ -23,7 +22,8 @@
     background-size: cover; 
     background-position: relative; /* Optional: controls the size of the image */
     overflow-x: hidden;
-    background-image: url(Pictures/richard-horvath-_nWaeTF6qo0-unsplash.jpg);
+    background-image: url(/static/interview_form_bg.jpg);
+    /*background: linear-gradient(grey, black);*/
     }
     
   
@@ -107,7 +107,7 @@
     background-size: cover; 
     background-position: relative; /* Optional: controls the size of the image */
     overflow-x: hidden;
-    background-image: url(Pictures/richard-horvath-_nWaeTF6qo0-unsplash.jpg);
+    background-image: "{{ url_for('static', filename='/static/interview_form_bg.jpg') }}";
     }
     
 
@@ -271,7 +271,7 @@
                 </div>
             </div>
             <div class="button_container">
-                <button type="submit">Start interview</button>
+                <button type="submit"><a href="http://127.0.0.1:5000/interview">Start interview</a></button>
             </div>
         </form>
     </div>
@@ -279,5 +279,5 @@
 </body>
 </html>
 
-<script src="script1.js"></script>  </body>
+<script src="{{ url_for('static', filename='script1.js') }}"></script>  </body>
 </html>
