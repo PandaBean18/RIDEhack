@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><style>* 
+  This is a comment. You can use comments to explain your CSS code.
+*/
+
+/* Selectors */
+*{
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+body {
+    /* styles for the body element */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    
+    background-color: white; /* Replace with your image path */
+  background-repeat: repeat;  /* Optional: controls how the image repeats */
+ /* Optional: controls the position of the image */
+  background-size: cover; 
+  background-position: relative; /* Optional: controls the size of the image */
+  overflow-x: hidden;
+  }
+  
+
+  
+  /* Links */
+header{
+  width : 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px ;
+  background : rgba(0, 0,0,0);
+  
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(10, 10, 10);
+  letter-spacing: 1.5px;
+  cursor:pointer;
+}
+
+nav li {
+  display: inline-block;
+  list-style: none;
+  padding: 20px 20px ;
+}
+
+a,button{
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(8, 9, 9);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button{
+  background: #f9f8f9;
+  border:  2px solid #fa0db7;
+  border-radius: 50px;
+  
+  padding: 9px 25px ;
+}
+.buttons{
+  padding: 0px 30px;
+}
+
+nav li a:hover{
+  color: #9421d3;
+  transition: all 0.4s ease 0s;
+}
+
+button a:hover{
+  color: #296058;
+  transition: all 0.4s ease 0s;
+}
+
+button:hover{
+  color: #9421d3;
+  transition:  all 0.4s ease 0s;
+}
+
+.slide1{
+  height:100vh ;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-image: url(Pictures/Screenshot\ 2024-04-20\ at\ 2.56.12\ PM.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+.slide2{
+  height:100vh ;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-image: url(Pictures/Screenshot\ 2024-04-20\ at\ 8.51.17\ PM.png);
+  scroll-snap-align: start;
+  
+  
+}
+.slide3{
+  height:100vh ;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-image: url(Pictures/Screenshot\ 2024-04-20\ at\ 8.55.17\ PM.png);
+  scroll-snap-align: start;
+}
+.slide4{
+  height:100vh ;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-image: url(Pictures/background1.png);
+  scroll-snap-align: start;
+}
+
+
+.container{
+  
+ 
+  perspective: 10px;
+  height: 100vh;
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: 30px;
+}
+
+section{
+  min-height: 100vh;
+}
+.parallax {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+}
+
+.parallax img{
+  position: absolute;
+  object-fit: cover;
+  pointer-events: none;
+
+  top: 1.2%;
+  left: 0%;
+}
+
+
+.parallax #text{
+  position: absolute;
+  font-size: 2.5rem;
+   
+  color: #0e0e0e;
+  width: max-content;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: aliceblue;
+  top: 8%;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 5px solid;
+  animation: 
+      typing  4s ,
+      cursor 0.4s step-end infinite alternate ;
+  
+}
+
+@keyframes cursor {
+      50% { border-color: transparent}
+}
+
+@keyframes typing {
+  from{width: 0}
+  
+}
+section{
+  display: grid;
+  place-items: center;
+  align-content: center;
+}
+
+.about-us {
+  text-align: center;
+  padding: 50px;
+  font-family: monospace; /* Monospace font for typewriter aesthetic */
+}
+
+.typewriter {
+  overflow: hidden;
+  border-right: 3px solid black; /* Simulates cursor */
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 3px; /* Adjust letter spacing for typewriter effect */
+  animation: typing 3.5s steps(40, end), blink-cursor 0.5s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-cursor {
+  from, to { border-color: black }
+  50% { border-color: transparent }
+}
+.scroll-animation {
+  
+  
+  transform: translateX(-150%); /* Move text 100% to the left */
+  transition: transform 1s ease-in-out; /* Set animation properties */
+}
+.scroll-animation p,h1{
+  color: white;
+  text-align: center;
+  font-size: 2 rem;
+}
+.scroll-animation:in-viewport {
+  opacity: 1;
+  transform: translateX(0); /* Animate text back to original position */
+}</style>
+ 
+  <meta charset="UTF-8">
+  <title>Your Page Title</title>
+  <link rel="stylesheet" href="style1.css">  </head>
+<body>
+   <header>
+    <div class="logo"><p>PRACTERVIEW</p></div>
+     <nav>
+    <ul>
+       <li><a href="">Home</a></li>
+       <li><a href="">About</a></li>
+       <li><a href="">Interview</a></li>
+       <li><a href="">question bank</a></li>        
+   </ul>
+  </nav>
+  <div class="buttons">
+    <button><a href="">Login</a></button>
+    <button><a href="">Sign in </a></button>
+  </div>
+</header>
+<div class="container">
+  <div class="slide1">
+    
+  </div>
+  <div class="slide2">
+    <section class="parallax">
+      <h1 id="text">The fastest way to get your dream job .</h1>
+      <img src="Downloads/train.png" alt = "train" id="train">
+    </section>
+  </div>
+  <div class="slide3">
+    <section class="about-us">
+      <h2>About Us</h2>
+      <p class="typewriter" data-text="We are a team of passionate individuals...">...</p>
+    </section>
+    </section>
+  </div>
+  <div class="slide4"></div>
+</div>
+
+
+  <script >
+    let train = document.getElementById("train");
+
+window.addEventListener("scroll",()=>{
+    let value = window.scrollY;
+    train.style.right = value*2+"px";
+})
+
+
+
+const element = document.querySelector('.scroll-animation');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      element.classList.add('in-viewport');
+    } else {
+      element.classList.remove('in-viewport');
+    }
+  });
+});
+
+observer.observe(element);
+  </script>  </body>
+</html>
+

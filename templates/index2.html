@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+  <meta charset="UTF-8">
+  <title>Your Page Title</title>
+  <link rel="stylesheet" href="style2.css">
+  <style>
+   *{
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+  }
+  body {
+      /* styles for the body element */
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      
+      background-color: white; /* Replace with your image path */
+    background-repeat: repeat;  /* Optional: controls how the image repeats */
+   /* Optional: controls the position of the image */
+    background-size: cover; 
+    background-position: relative; /* Optional: controls the size of the image */
+    overflow-x: hidden;
+    background-image: url(Pictures/richard-horvath-_nWaeTF6qo0-unsplash.jpg);
+    }
+    
+  
+    
+    /* Links */
+  header{
+    width : 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px ;
+    background :rgba(0,0,0,0.2);
+    backdrop-filter: blur(50px);
+    
+  }
+  
+  .logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(252, 252, 252);
+    letter-spacing: 1.5px;
+    cursor:pointer;
+  }
+  
+  nav li {
+    display: inline-block;
+    list-style: none;
+    padding: 20px 20px ;
+  }
+  
+  a,button{
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(245, 250, 250);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  button{
+    background: #f9f8f9;
+    border:  2px solid #fa0db7;
+    border-radius: 50px;
+    color: #f9f8f9;
+    padding: 9px 25px ;
+  }
+  .buttons{
+    padding: 0px 30px;
+  }
+  
+  nav li a:hover{
+    color: #9421d3;
+    transition: all 0.4s ease 0s;
+  }
+  
+  button a:hover{
+    color: #296058;
+    transition: all 0.4s ease 0s;
+  }
+  
+  button:hover{
+    color: #9421d3;
+    transition:  all 0.4s ease 0s;
+  }
+
+ 
+   *{
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+  }
+  body {
+      /* styles for the body element */
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      
+      background-color: white; /* Replace with your image path */
+    background-repeat: repeat;  /* Optional: controls how the image repeats */
+   /* Optional: controls the position of the image */
+    background-size: cover; 
+    background-position: relative; /* Optional: controls the size of the image */
+    overflow-x: hidden;
+    background-image: url(Pictures/richard-horvath-_nWaeTF6qo0-unsplash.jpg);
+    }
+    
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .box {
+        max-width: 600px;
+        padding: 20px;
+         
+        margin: 0 auto;
+        margin-top: 50px;
+        box-shadow: 0px 0px 16px 0px rgba(255,255,255,0.1);
+        backdrop-filter: blur(50px);
+        border: 4px solid rgb(230, 156, 230);
+       
+        border-radius: 30px;
+        
+
+    }
+    .box h1{
+        color: aliceblue;
+        text-align: center;
+    }
+    .small {
+        font-size: 20px;
+    }
+    .form_container{
+        margin: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+        gap: 20px;
+    }
+    .form_control{
+        display: flex;
+        flex-direction: column;
+    }
+    label{
+        margin-bottom: 5px;
+        font-size: 15px;
+        margin-left: 10px;
+        color: aliceblue;
+    }
+    input, select, textarea{
+        padding: 6px 10px;
+        border: 1px solid black;
+        border-radius: 30px;
+        font-size: 15px;
+    }
+    input:focus{
+        outline-color: red;
+    }
+    .button_container{
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
+    button{
+        background-color: blue;
+        border: transparent solid 5px;
+        padding: 5px 10px;
+        color: white;
+        border-radius: 8px;
+        transition: 0.3s ease-in;
+    }
+    button:hover{
+        background: red;
+        border: 4px solid blue;
+        color: black;
+        transition: o.3s ease-out;
+        cursor: pointer;
+
+    }
+    .textarea_control{
+        grid-column: 1 / span 2;
+    }
+    .textarea_control textarea{
+        width: 100%;
+    }
+    @media(max-width: 460px){
+        .textarea_control{
+        grid-column: 1 / span 1;
+    } 
+    }
+</style>
+</head>
+<body>
+   <header>
+    <div class="logo"><p>PRACTERVIEW</p></div>
+     <nav>
+    <ul>
+       <li><a href="">Home</a></li>
+       <li><a href="">About</a></li>
+       <li><a href="">Interview</a></li>
+       <li><a href="">question bank</a></li>        
+   </ul>
+  </nav>
+  <div class="buttons">
+    <button><a href="">Login</a></button>
+    <button><a href="">Sign in </a></button>
+  </div>
+</header>
+<div class="container">
+    <div class="box">
+        <h1> Interviewee details
+            
+        </h1>
+        <form action="">
+            <div class="form_container">
+                <div class="form_control">
+                    <label for="first_name">First Name</label>
+                    <input id="first_name" name="first_name" placeholder="Enter First Name">
+
+                </div>
+                <div class="form_control">
+                    <label for="last_name">Last Name</label>
+                    <input id="last_name" name="last_name" placeholder="Enter Last Name">
+
+                </div>
+                <div class="form_control">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter Email">
+
+                </div>
+                <div class="form_control">
+                    <label for="job_role">Job Role</label>
+                    <select id="job_role" name="job_role">
+                        <option value="">Select Job Role</option>
+                        <option value="frontend">Frontend Developer</option>
+                        <option value="full_stack">Full Stack Developer</option>
+                        <option value="backend">Backend Developer</option>
+                    </select>
+
+                </div>
+                <div class="textarea_control">
+                    <label for="address">Address</label>
+                    <textarea name="address" id="address" cols="50" row="4" placeholder="Enter address"></textarea>
+
+                </div>
+                <div class="form_control">
+                    <label for="city">City</label>
+                    <input id="city" name="city" placeholder="Enter City Name">
+
+                </div>
+                <div class="form_control">
+                    <label for="pincode">Pincode</label>
+                    <input type="number" id="pincode" name="pincode" placeholder="Enter Pincode">
+
+                </div>
+                <div class="form_control">
+                    <label for="date">Date</label>
+                    <input value="2022-12-03" type="date" id="date" name="date">
+
+                </div>
+                <div class="form_control">
+                    <label for="upload">Upload Your CV</label>
+                    <input type="file" id="upload" name="upload">
+
+                </div>
+            </div>
+            <div class="button_container">
+                <button type="submit">Start interview</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+<script src="script1.js"></script>  </body>
+</html>
