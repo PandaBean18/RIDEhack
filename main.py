@@ -124,6 +124,7 @@ initialize(chat)
 questions = parse_questions(questions)
 score = 0
 answers = []
+a = input("Start (y/n): ")
 for i in range(len(questions)):
     if (questions[i] == ''):
         continue
@@ -134,16 +135,20 @@ for i in range(len(questions)):
     response = random.choice(default_responses)
     speak(response)
     grade = process_answer(chat, answer, i)
+    print("Grade for the previous answer: {}".format(grade))
     score += int(grade)
 
 
 follow_up_questions = get_follow_up(chat, answers)
+questions = parse_questions(follow_up_questions)
 for i in range(len(follow_up_questions)):
     if (follow_up_questions[i] == ''):
         continue
     print(follow_up_questions[i])
     speak(follow_up_questions[i])
-    answer = input("> ")
+    answer = takecommand()
+    response = random.choice(default_responses)
+    speak(response)
 
 
 review = get_chat_response(chat, "On the basis of our interactions, Please let me know what i should improve upon.")

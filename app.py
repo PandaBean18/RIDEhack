@@ -3,7 +3,7 @@ import vertexai
 from vertexai.generative_models import GenerativeModel, ChatSession
 from gtts import gTTS
 import pyttsx3
-import datetime
+import random
 import speech_recognition as sr
 from flask import render_template
 from flask import redirect
@@ -23,6 +23,29 @@ model_follow_up = model.start_chat()
 chat_follow_up = model.start_chat()
 points = 0
 questions = []
+default_responses = [
+    "Interesting perspective, I appreciate that.",
+    "That's a thoughtful response.",
+    "Great, let's move on to the next question.",
+    "Good to know, let's continue.",
+    "Your input is valuable, thank you.",
+    "Your response gives me good context, thanks.",
+    "I understand, thank you for explaining.",
+    "Insightful answer, thank you for sharing.",
+    "Your insights are valuable.",
+    "Your answer gives me good context.",
+    "Your perspective is valued.",
+    "Your response is noted.",
+    "Your input helps guide the discussion.",
+    "Your input helps us move forward.",
+    "Your perspective helps shape our understanding.",
+    "Your insights contribute to our understanding.",
+    "Your perspective broadens our viewpoint.",
+    "Your input enhances our understanding.",
+    "Your perspective deepens our analysis.",
+    "Your contribution moves us forward.",
+    "Your insights contribute to our collective knowledge."
+]
 
 def speak(audio):
     engine.say(audio)
@@ -144,5 +167,10 @@ def index_3():
     global i
     global questions
     question = questions[i]
+    text = "You may type or speak your answers."
+
+    if (i>0):
+        text = random.choice(default_responses)
+
     i+=1
-    return render_template('index3.html', question=question)
+    return render_template('index3.html', question=question, text=text)
