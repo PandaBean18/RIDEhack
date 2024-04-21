@@ -86,8 +86,12 @@ def parse_questions(questions):
     return questions
 
 def process_answer(chat, answer, index):
-    prompt = "this is my answer for {} is: ".format(index) + answer + ". Return strictly an integer grading this answer from 1-10. Just an integer, no explanation"
+    prompt = "this is my answer for {} is: ".format(index) + answer + ". Return strictly an integer grading this answer based on my knowledge of topic from 1-10. Just an integer, no explanation"
     grade = get_chat_response(chat, prompt)
+    for a in range(len(grade)):
+        if (grade[a] in "0123456789"):
+            grade = grade[a]
+            break
     return grade
 
 
@@ -101,7 +105,7 @@ for i in range(len(questions)):
         continue
     print(questions[i])
     speak(questions[i])
-    answer = input("> ")
+    answer = takecommand()
     answers.append(answer)
     grade = process_answer(chat, answer, i)
     score += int(grade)
