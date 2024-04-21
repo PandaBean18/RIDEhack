@@ -2,7 +2,7 @@ import vertexai
 from vertexai.generative_models import GenerativeModel, ChatSession
 from gtts import gTTS
 import pyttsx3
-import datetime
+import random
 import speech_recognition as sr
 
 engine = pyttsx3.init('sapi5')
@@ -18,6 +18,30 @@ model_follow_up = model.start_chat()
 chat_follow_up = model.start_chat()
 points = 0
 questions = []
+
+default_responses = [
+    "Interesting perspective, I appreciate that.",
+    "That's a thoughtful response.",
+    "Great, let's move on to the next question.",
+    "Good to know, let's continue.",
+    "Your input is valuable, thank you.",
+    "Your response gives me good context, thanks.",
+    "I understand, thank you for explaining.",
+    "Insightful answer, thank you for sharing.",
+    "Your insights are valuable.",
+    "Your answer gives me good context.",
+    "Your perspective is valued.",
+    "Your response is noted.",
+    "Your input helps guide the discussion.",
+    "Your input helps us move forward.",
+    "Your perspective helps shape our understanding.",
+    "Your insights contribute to our understanding.",
+    "Your perspective broadens our viewpoint.",
+    "Your input enhances our understanding.",
+    "Your perspective deepens our analysis.",
+    "Your contribution moves us forward.",
+    "Your insights contribute to our collective knowledge."
+]
 
 def speak(audio):
     engine.say(audio)
@@ -61,7 +85,7 @@ def initialize(chat: ChatSession):
 
 def get_follow_up(chat, answers):
     prompt = "The answers for the questions are:\n"
-    for i in range(len(answer)):
+    for i in range(len(answers)):
         prompt += "{}".format(i+1)
         prompt += answers[i]
         prompt += "\n"
@@ -107,9 +131,11 @@ for i in range(len(questions)):
     speak(questions[i])
     answer = takecommand()
     answers.append(answer)
+    response = random.choice(default_responses)
+    speak(response)
     grade = process_answer(chat, answer, i)
     score += int(grade)
-    print("grade: {}".format(grade))
+
 
 follow_up_questions = get_follow_up(chat, answers)
 for i in range(len(follow_up_questions)):
